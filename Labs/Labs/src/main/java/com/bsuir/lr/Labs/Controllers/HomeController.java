@@ -1,23 +1,34 @@
 package com.bsuir.lr.Labs.Controllers;
 
 import com.bsuir.lr.Labs.Models.ComplexNumber;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.bsuir.lr.Labs.builders.ComplexBuilder;
+import jakarta.validation.constraints.DecimalMin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
 
 
 import java.io.IOException;
 
 //27
 @RestController
+@RequestMapping("/home")
+@Validated
 public class HomeController {
-    @GetMapping("/Home/Index")
-    public String Index(@RequestParam double real, @RequestParam double img) throws JsonProcessingException {
-        var complex = new ComplexNumber(real, img);
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(complex);
+
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+    @GetMapping("/index")
+    public ComplexNumber index(@RequestParam(name = "real", required = false, defaultValue = "0") @DecimalMin("-5") double real,
+                               @RequestParam(name = "img", required = false, defaultValue = "0") @DecimalMin("-5") double img) {
+        var complexBuilder = new ComplexBuilder();
+        var complex = new ComplexNumber(real, img, complexBuilder);
+        logger.info("/index, method Get Succeded");
+        return complex;
     }
+
+
 
 }
