@@ -20,11 +20,17 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+    private ComplexBuilder builder;
+
+    public HomeController(ComplexBuilder builder)
+    {
+        this.builder = builder;
+    }
+
     @GetMapping("/index")
     public ComplexNumber index(@RequestParam(name = "real", required = false, defaultValue = "0") @DecimalMin("-5") double real,
                                @RequestParam(name = "img", required = false, defaultValue = "0") @DecimalMin("-5") double img) {
-        var complexBuilder = new ComplexBuilder();
-        var complex = new ComplexNumber(real, img, complexBuilder);
+        var complex = new ComplexNumber(real, img, builder);
         logger.info("/index, method Get Succeded");
         return complex;
     }

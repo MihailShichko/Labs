@@ -10,9 +10,7 @@ import java.lang.String;
 public class ComplexNumber
 {
     //region Properties
-    @DecimalMax("10.0") @DecimalMin("0.0")
     private final double real;
-    @DecimalMax("10.0") @DecimalMin("0.0")
     private final double img;
     private String algebraicForm;
     private String exponentialForm;
@@ -34,9 +32,5 @@ public class ComplexNumber
         this.algebraicForm = builder.calculateAlgebraicForm(real, img);
         this.exponentialForm = builder.calculateExponentialForm(real, img);
     }
-
-    //region PrivateMethods
-
-    //endregion
 
 }
