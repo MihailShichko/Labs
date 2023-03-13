@@ -29,7 +29,7 @@ public class HomeController {
 
     @GetMapping("/index")
     public ComplexNumber index(@RequestParam(name = "real", required = false, defaultValue = "0") @DecimalMin("-5") double real,
-                               @RequestParam(name = "img", required = false, defaultValue = "0") @DecimalMin("-5") double img) {
+                               @RequestParam(name = "img", required = false, defaultValue = "0") @DecimalMin("-5") double img) throws InterruptedException {
         var complex = new ComplexNumber(real, img, builder);
         logger.info("/index, method Get Succeded");
         return complex;

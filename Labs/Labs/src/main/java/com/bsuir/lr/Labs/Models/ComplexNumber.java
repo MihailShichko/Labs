@@ -25,8 +25,7 @@ public class ComplexNumber
     //endregion
 
 
-    public ComplexNumber(double real, double img, ComplexBuilder builder)
-    {
+    public ComplexNumber(double real, double img, ComplexBuilder builder) throws InterruptedException {
         this.real = real;
         this.img = img;
         this.algebraicForm = builder.calculateAlgebraicForm(real, img);
