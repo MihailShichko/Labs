@@ -32,7 +32,7 @@ class ComplexBuilderTests {
     private String algebraicForm;
     private String exponencialForm;
     @Test
-    void AlgebraicFormValidTest() throws InterruptedException {
+    void algebraicFormValidTest() throws InterruptedException {
         for(var testCase : ValidCases) {
             real = (double)testCase[0];
             img = (double)testCase[1];
@@ -41,7 +41,7 @@ class ComplexBuilderTests {
         }
     }
     @Test
-    void ArithmeticExceptionTests() {
+    void arithmeticExceptionTests() {
         for (var testCase: ArithmeticInvalidTestCases) {
             real = (double)testCase[0];
             img = (double)testCase[1];
@@ -52,7 +52,7 @@ class ComplexBuilderTests {
         }
     }
     @Test
-    void IllegalArgumentExceptionTests() {
+    void illegalArgumentExceptionTests() {
         for (var testCase: IllegalArgInvalidTestCases) {
             real = (double)testCase[0];
             img = (double)testCase[1];
@@ -64,7 +64,7 @@ class ComplexBuilderTests {
         }
     }
     @Test
-    void ExponentialFormValidTest() throws InterruptedException {
+    void exponentialFormValidTest() throws InterruptedException {
         for(var testCase : ValidCases) {
             real = (double)testCase[0];
             img = (double)testCase[1];
