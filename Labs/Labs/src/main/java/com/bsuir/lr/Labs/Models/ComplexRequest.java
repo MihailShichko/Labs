@@ -19,7 +19,7 @@ public class ComplexRequest {
         if (o == null) return false;
         if (getClass() != o.getClass()) return false;
         ComplexRequest req = (ComplexRequest) o;
-        return req.img ==this.img && req.real == this.real;
+        return (req.img == this.img && req.real == this.real);
     }
 
     @Override
@@ -28,5 +28,12 @@ public class ComplexRequest {
         result = 31 * result + (int)Double.doubleToLongBits(this.real);
         result = 31 * result + (int)Double.doubleToLongBits(this.img);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "\n" + getClass().getSimpleName() + "{" +
+                "real=" + real +
+                ", img='" + img + "}";
     }
 }

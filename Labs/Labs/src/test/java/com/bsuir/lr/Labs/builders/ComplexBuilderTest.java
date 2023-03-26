@@ -1,9 +1,11 @@
 package com.bsuir.lr.Labs.builders;
 
+import com.bsuir.lr.Labs.Models.ComplexRequest;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
@@ -11,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(Parameterized.class)
 class ComplexBuilderTests {
+
 
     ComplexBuilder builder = new ComplexBuilder();
     private List<Object[]> ArithmeticInvalidTestCases = new ArrayList<Object[]>(
@@ -37,7 +40,8 @@ class ComplexBuilderTests {
             real = (double)testCase[0];
             img = (double)testCase[1];
             algebraicForm = (String)testCase[2];
-            Assert.assertEquals(algebraicForm, builder.calculateAlgebraicForm(real,img));
+            var actual = builder.buildComplexNumber(new ComplexRequest(real, img));
+            Assert.assertEquals(algebraicForm, actual.getAlgebraicForm());
         }
     }
     @Test
@@ -47,7 +51,7 @@ class ComplexBuilderTests {
             img = (double)testCase[1];
             Assert.assertThrows(ArithmeticException.class, ()->
             {
-                builder.calculateExponentialForm(real, img);
+                builder.buildComplexNumber(new ComplexRequest(real, img));
             });
         }
     }
@@ -58,8 +62,7 @@ class ComplexBuilderTests {
             img = (double)testCase[1];
             Assert.assertThrows(IllegalArgumentException.class, ()->
             {
-                builder.calculateAlgebraicForm(real, img);
-                builder.calculateExponentialForm(real, img);
+                builder.buildComplexNumber(new ComplexRequest(real, img));
             });
         }
     }
@@ -69,7 +72,8 @@ class ComplexBuilderTests {
             real = (double)testCase[0];
             img = (double)testCase[1];
             exponencialForm = (String)testCase[3];
-            Assert.assertEquals(exponencialForm, builder.calculateExponentialForm(real,img));
+            var actual = builder.buildComplexNumber(new ComplexRequest(real, img));
+            Assert.assertEquals(exponencialForm, actual.getExponentialForm());
         }
     }
 
