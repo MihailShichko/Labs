@@ -1,6 +1,6 @@
-package com.bsuir.lr.Labs.Exceptions;
+package com.bsuir.lr.Labs.exceptions;
 
-import com.bsuir.lr.Labs.Controllers.HomeController;
+import com.bsuir.lr.Labs.controllers.HomeController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

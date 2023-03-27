@@ -1,4 +1,4 @@
-package com.bsuir.lr.Labs.Models;
+package com.bsuir.lr.Labs.models;
 
 public class ComplexRequest {
     private double real;

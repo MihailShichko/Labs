@@ -1,4 +1,4 @@
-package com.bsuir.lr.Labs.Extensions;
+package com.bsuir.lr.Labs.extensions;
 
 public class ComplexExtensions
 {

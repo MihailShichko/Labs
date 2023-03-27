@@ -1,15 +1,12 @@
 package com.bsuir.lr.Labs.builders;
 
-import com.bsuir.lr.Labs.Models.ComplexRequest;
+import com.bsuir.lr.Labs.models.ComplexRequest;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(Parameterized.class)
 class ComplexBuilderTests {
