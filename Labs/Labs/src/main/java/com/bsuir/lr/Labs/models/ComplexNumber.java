@@ -1,9 +1,12 @@
 package com.bsuir.lr.Labs.models;
 
 import com.bsuir.lr.Labs.controllers.HomeController;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import java.lang.String;
 public class ComplexNumber
 {
@@ -29,4 +32,23 @@ public class ComplexNumber
         this.img = img;
     }
 
+    public static int compare(ComplexNumber first, ComplexNumber second)
+    {
+        if((first.getReal() + first.getImg()) > (second.getReal() + second.getImg())) return 1;
+        return 0;
+    }
+
+    @Override
+    public String toString()
+    {
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        try {
+            return ow.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        //return "\n{" + "\n\"real\": " + this.real + "\n\"img\": " + this.img +
+          //      "\n\"algebraicForm\": " + this.algebraicForm + "\n\"exponentialForm\": " + "\"" + this.exponentialForm + "\"" + "\n}";
+    }
 }

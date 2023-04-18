@@ -7,9 +7,13 @@ import com.bsuir.lr.Labs.services.RequestCountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 public class ComplexBuilder{
-//переделать чтобы все тут было
     @Autowired
     private CachingHashMap cach;
     @Autowired
@@ -30,8 +34,24 @@ public class ComplexBuilder{
         return result;
     }
 
+    public List<ComplexNumber> buildComplexNumList(List<ComplexRequest> request)
+    {
+        var result = request.stream()
+                .map(req -> {
+                    try {
+                        return buildComplexNumber(req);
+                    } catch (InterruptedException e) {
+                        System.out.println(e.getMessage());
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
     private String calculateAlgebraicForm(double real, double img) throws InterruptedException {
-        Thread.sleep(1500);
+        Thread.sleep(500);
         if (real > 10 || img > 10) throw new IllegalArgumentException("arguments can not be over 10");
 
         if (real < -5 || img < -5) throw new IllegalArgumentException("arguments can not be less then -5");
@@ -40,7 +60,7 @@ public class ComplexBuilder{
     }
 
     private String calculateExponentialForm(double real, double img) throws InterruptedException {
-        Thread.sleep(1500);
+        Thread.sleep(500);
         double r = Math.sqrt(Math.pow(real, 2) + Math.pow(img, 2));
         if(img == 0.0) throw new ArithmeticException("Division By Zero");
         double fi = Math.atan(real / img);
