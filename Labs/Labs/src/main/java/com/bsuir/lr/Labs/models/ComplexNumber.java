@@ -35,7 +35,8 @@ public class ComplexNumber
     public static int compare(ComplexNumber first, ComplexNumber second)
     {
         if((first.getReal() + first.getImg()) > (second.getReal() + second.getImg())) return 1;
-        return 0;
+        if((first.getReal() + first.getImg()) == (second.getReal() + second.getImg())) return 0;
+        return -1;
     }
 
     @Override
@@ -48,7 +49,5 @@ public class ComplexNumber
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
-        //return "\n{" + "\n\"real\": " + this.real + "\n\"img\": " + this.img +
-          //      "\n\"algebraicForm\": " + this.algebraicForm + "\n\"exponentialForm\": " + "\"" + this.exponentialForm + "\"" + "\n}";
     }
 }

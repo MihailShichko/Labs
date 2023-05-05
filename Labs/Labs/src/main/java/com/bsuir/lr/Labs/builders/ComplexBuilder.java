@@ -36,7 +36,7 @@ public class ComplexBuilder{
 
     public List<ComplexNumber> buildComplexNumList(List<ComplexRequest> request)
     {
-        var result = request.stream()
+        return request.stream()
                 .map(req -> {
                     try {
                         return buildComplexNumber(req);
@@ -46,8 +46,6 @@ public class ComplexBuilder{
                     }
                 })
                 .collect(Collectors.toList());
-
-        return result;
     }
 
     private String calculateAlgebraicForm(double real, double img) throws InterruptedException {

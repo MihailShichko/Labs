@@ -49,7 +49,7 @@ public class HomeController {
                     .stream()
                     .forEach(num -> repository.add(num));
 
-            //return new ResponseEntity<>(repository.getAll(), HttpStatus.OK);
+
             return new ResponseEntity<>(repository.getAll() + "\nAVERAGE: " + repository.average()
                     + "\nMAX: " + repository.max() + "\nMIN " + repository.min(), HttpStatus.OK);
     }
