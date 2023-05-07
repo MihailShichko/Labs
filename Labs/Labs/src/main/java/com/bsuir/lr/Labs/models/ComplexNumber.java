@@ -11,10 +11,17 @@ import java.lang.String;
 public class ComplexNumber
 {
     //region Properties
+    private int id;
     private double real;
     private double img;
     private String algebraicForm;
     private String exponentialForm;
+    public int getId(){
+        return id;
+    }
+    public void setId(int value){
+        id = value;
+    }
     public double getReal() { return real; }
     public double getImg() { return img; }
 
@@ -30,6 +37,14 @@ public class ComplexNumber
     public ComplexNumber(double real, double img){
         this.real = real;
         this.img = img;
+    }
+
+    public ComplexNumber(int id, double real, double img, String algebraicForm, String exponentialForm){
+        this.id = id;
+        this.real = real;
+        this.img = img;
+        this.exponentialForm = exponentialForm;
+        this.algebraicForm = algebraicForm;
     }
 
     public static int compare(ComplexNumber first, ComplexNumber second)
