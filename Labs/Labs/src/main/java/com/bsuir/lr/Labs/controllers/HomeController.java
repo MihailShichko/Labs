@@ -16,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+
 //27
 @RestController
 @RequestMapping("/home")
@@ -36,11 +38,21 @@ public class HomeController {
     @GetMapping("/index")
     public ComplexNumber index(@RequestParam(name = "real", required = false, defaultValue = "0") @DecimalMin("-5") double real,
                                @RequestParam(name = "img", required = false, defaultValue = "0") @DecimalMin("-5") double img) throws InterruptedException {
-        logger.info("/index, method Get Succeded");
         var request = new ComplexRequest(real, img);
-        var complex = builder.buildComplexNumber(request);
-        repository.insert(complex);
-        return complex;
+        logger.info("started async call");
+        CompletableFuture.supplyAsync(() -> {
+                    try {
+                        return builder.buildComplexNumber(request);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .thenAccept(complex -> repository.insert(complex));
+
+        logger.info("ready to send responce");
+        return repository.getAll().stream()
+                .max(ComplexNumber::compareById)
+                .get();
     }
     @GetMapping("/count")
     public int getCount()

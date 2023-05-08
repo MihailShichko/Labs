@@ -54,6 +54,12 @@ public class ComplexNumber
         return -1;
     }
 
+    public static int compareById(ComplexNumber first, ComplexNumber second)
+    {
+        if(first.getId() > second.getId()) return 1;
+        if((first.getId()) == second.getId()) return 0;
+        return -1;
+    }
     @Override
     public String toString()
     {
