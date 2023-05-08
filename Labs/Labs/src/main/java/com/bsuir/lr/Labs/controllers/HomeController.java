@@ -53,11 +53,10 @@ public class HomeController {
     {
             builder.buildComplexNumList(request)
                     .stream()
-                    .forEach(num -> repository.add(num));
+                    .forEach(num -> repository.insert(num));
 
 
-            return new ResponseEntity<>(repository.getAll() + "\nAVERAGE: " + repository.average()
-                    + "\nMAX: " + repository.max() + "\nMIN " + repository.min(), HttpStatus.OK);
+            return new ResponseEntity<>(repository.getAll(), HttpStatus.OK);
     }
     @GetMapping("/get")
     public ComplexNumber getComplex(@RequestParam(name = "id", required = true, defaultValue = "0") @Min(0) int id)
